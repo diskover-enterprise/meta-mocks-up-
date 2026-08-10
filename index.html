@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8"/>
 <title>Facebook Feed Ad Mockups — CBD Pain Relief</title>
 <style>
   :root {
@@ -98,6 +99,10 @@
     width: 100%;
     display: block;
   }
+  .creative video {
+    width: 100%;
+    display: block;
+  }
   .link-card {
     background: #f0f2f5;
     padding: 10px 16px 14px 16px;
@@ -134,681 +139,1415 @@
     white-space: nowrap;
     flex-shrink: 0;
   }
+
+  .home-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding: 20px 0 40px 0;
+  }
+  .home-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: -8px;
+  }
+  .home-subtitle {
+    color: var(--text-gray);
+    font-size: 15px;
+    margin-bottom: 12px;
+  }
+  .category-tiles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+  }
+  .category-tile {
+    width: 320px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .category-tile:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .category-tile img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .category-tile-label {
+    padding: 16px;
+  }
+  .category-tile-label .cat-name {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-dark);
+  }
+  .category-tile-label .cat-count {
+    font-size: 13px;
+    color: var(--text-gray);
+    margin-top: 2px;
+  }
+  .category-header {
+    display: none;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+  .back-btn {
+    background: var(--tag-bg);
+    color: var(--text-dark);
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .back-btn:hover {
+    background: #d8dade;
+  }
+  .category-title-active {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 16px 16px 16px;
+  }
+  .dl-btn {
+    flex: 1;
+    text-align: center;
+    background: var(--blue-btn);
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .dl-btn-secondary {
+    background: var(--tag-bg);
+    color: var(--text-dark);
+  }
 </style>
 </head>
 <body>
-  <h1>Facebook Feed Ad Format — CBD Pain Relief Creatives</h1>
-  <p class="subtitle">Native feed mockups for review — page, primary text, image, and link card per creative</p>
 
-  <div class="grid">
-
-    <!-- Card 1 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AW</div>
-        <div class="page-info">
-          <div class="page-name">Aurum Wellness</div>
-          <div class="sponsored">Sponsored</div>
+  <div id="homeScreen" class="home-wrap">
+    <div class="home-title">Ad Creative Library</div>
+    <div class="home-subtitle">Select a category to view, review, and download ad creatives</div>
+    <div class="category-tiles">
+      <div class="category-tile" onclick="showCategory('cbd')">
+        <img src="hf_20260805_171117_b1b67cf5-e279-4cee-9512-4e5757fd8c39.jpg" alt="CBD Pain Relief">
+        <div class="category-tile-label">
+          <div class="cat-name">CBD Pain Relief</div>
+          <div class="cat-count" id="cbdCount">23 ads</div>
         </div>
       </div>
-      <div class="primary-text">Doctors are getting more questions about natural pain support than ever before.
+      <div class="category-tile" onclick="showCategory('libo')">
+        <img src="hf_20260810_181242_f13c0656-4c49-4ec1-b918-9ac0cc5059e5.jpg" alt="LiboPrime">
+        <div class="category-tile-label">
+          <div class="cat-name">LiboPrime (DE)</div>
+          <div class="cat-count" id="liboCount">21 ads</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="categoryHeader" class="category-header">
+    <button class="back-btn" onclick="showHome()">&larr; Back to categories</button>
+    <div class="category-title-active" id="categoryTitleActive"></div>
+  </div>
+
+
+<div class="grid">
+<!-- Card 1 -->
+<div class="card" data-ad-text="Ask Your Doctor About Real Relief\n\nPremium botanical extract, backed by real conversations with real professionals.\n\n---\n\nDoctors are getting more questions about natural pain support than ever before.\n\nHere's what patients are being told:\n\n#1 - Why CBD is entering more clinical conversations\n#2 - How to know if it's right for you..." data-category="cbd" data-filename="aurum-wellness-1" data-index="1">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AW</div>
+<div class="page-info">
+<div class="page-name">Aurum Wellness</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Doctors are getting more questions about natural pain support than ever before.
 
 Here's what patients are being told:
 
 #1 - Why CBD is entering more clinical conversations
 #2 - How to know if it's right for you...</div>
-      <div class="creative">
-        <img src="hf_20260805_171117_b1b67cf5-e279-4cee-9512-4e5757fd8c39.jpg" alt="Aurum Wellness CBD ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURUMWELLNESS.COM</div>
-          <div class="headline">Ask Your Doctor About Real Relief</div>
-          <div class="description">Premium botanical extract, backed by real conversations with real professionals.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 2 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AH</div>
-        <div class="page-info">
-          <div class="page-name">Aura Hemp</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Pain relief isn't one-size-fits-all. That's why more people are sitting down with a professional before choosing a product.
+<div class="creative">
+<img alt="Aurum Wellness CBD ad" src="hf_20260805_171117_b1b67cf5-e279-4cee-9512-4e5757fd8c39.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURUMWELLNESS.COM</div>
+<div class="headline">Ask Your Doctor About Real Relief</div>
+<div class="description">Premium botanical extract, backed by real conversations with real professionals.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aurum-wellness-1.jpg" href="hf_20260805_171117_b1b67cf5-e279-4cee-9512-4e5757fd8c39.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 2 -->
+<div class="card" data-ad-text="Relief Starts With a Conversation\n\nFormulated with guidance from wellness professionals to help you find what works.\n\n---\n\nPain relief isn't one-size-fits-all. That's why more people are sitting down with a professional before choosing a product.\n\nKeep reading and I'll show you:\n\n#1 - What a real consultation looks like\n#2 - Why personalized dosing matters..." data-category="cbd" data-filename="aura-hemp-2" data-index="2">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AH</div>
+<div class="page-info">
+<div class="page-name">Aura Hemp</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Pain relief isn't one-size-fits-all. That's why more people are sitting down with a professional before choosing a product.
 
 Keep reading and I'll show you:
 
 #1 - What a real consultation looks like
 #2 - Why personalized dosing matters...</div>
-      <div class="creative">
-        <img src="hf_20260805_171122_4bf8ae43-8dcd-47b3-abbe-8cddaf0e516e.jpg" alt="Aura Hemp ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURAHEMP.COM</div>
-          <div class="headline">Relief Starts With a Conversation</div>
-          <div class="description">Formulated with guidance from wellness professionals to help you find what works.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">PW</div>
-        <div class="page-info">
-          <div class="page-name">Premium CBD Wellness</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Most CBD brands don't show you their lab work. We do — every single batch.
+<div class="creative">
+<img alt="Aura Hemp ad" src="hf_20260805_171122_4bf8ae43-8dcd-47b3-abbe-8cddaf0e516e.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURAHEMP.COM</div>
+<div class="headline">Relief Starts With a Conversation</div>
+<div class="description">Formulated with guidance from wellness professionals to help you find what works.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aura-hemp-2.jpg" href="hf_20260805_171122_4bf8ae43-8dcd-47b3-abbe-8cddaf0e516e.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 3 -->
+<div class="card" data-ad-text="Tested. Verified. Trusted.\n\nRigorous lab testing on every batch, before it ever reaches you.\n\n---\n\nMost CBD brands don't show you their lab work. We do — every single batch.\n\nKeep reading below and I'll show you:\n\n#1 - How our testing process works\n#2 - Why third-party verification matters..." data-category="cbd" data-filename="premium-cbd-wellness-3" data-index="3">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">PW</div>
+<div class="page-info">
+<div class="page-name">Premium CBD Wellness</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Most CBD brands don't show you their lab work. We do — every single batch.
 
 Keep reading below and I'll show you:
 
 #1 - How our testing process works
 #2 - Why third-party verification matters...</div>
-      <div class="creative">
-        <img src="hf_20260805_171316_2b7657bf-16ed-473d-99d1-1caeac0aeda1.jpg" alt="Premium CBD Wellness ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">PREMIUMCBDWELLNESS.COM</div>
-          <div class="headline">Tested. Verified. Trusted.</div>
-          <div class="description">Rigorous lab testing on every batch, before it ever reaches you.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AB</div>
-        <div class="page-info">
-          <div class="page-name">Aurum Botanics</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">What separates a good CBD formula from a great one? Precision.
+<div class="creative">
+<img alt="Premium CBD Wellness ad" src="hf_20260805_171316_2b7657bf-16ed-473d-99d1-1caeac0aeda1.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">PREMIUMCBDWELLNESS.COM</div>
+<div class="headline">Tested. Verified. Trusted.</div>
+<div class="description">Rigorous lab testing on every batch, before it ever reaches you.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="premium-cbd-wellness-3.jpg" href="hf_20260805_171316_2b7657bf-16ed-473d-99d1-1caeac0aeda1.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 4 -->
+<div class="card" data-ad-text="Precision-Crafted for Purity\n\nDeveloped with lab-grade precision, from molecule to bottle.\n\n---\n\nWhat separates a good CBD formula from a great one? Precision.\n\nHere's what happens inside our lab:\n\n#1 - Molecule-level quality control\n#2 - Why most brands skip this step..." data-category="cbd" data-filename="aurum-botanics-4" data-index="4">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AB</div>
+<div class="page-info">
+<div class="page-name">Aurum Botanics</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">What separates a good CBD formula from a great one? Precision.
 
 Here's what happens inside our lab:
 
 #1 - Molecule-level quality control
 #2 - Why most brands skip this step...</div>
-      <div class="creative">
-        <img src="hf_20260805_171318_a887ea46-02ea-4b65-b116-db1a8a00ef57.jpg" alt="Aurum Botanics gold label ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURUMBOTANICS.COM</div>
-          <div class="headline">Precision-Crafted for Purity</div>
-          <div class="description">Developed with lab-grade precision, from molecule to bottle.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">NW</div>
-        <div class="page-info">
-          <div class="page-name">Nordic Wellness</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Two women, one honest conversation about what actually fits into a daily routine.
+<div class="creative">
+<img alt="Aurum Botanics gold label ad" src="hf_20260805_171318_a887ea46-02ea-4b65-b116-db1a8a00ef57.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURUMBOTANICS.COM</div>
+<div class="headline">Precision-Crafted for Purity</div>
+<div class="description">Developed with lab-grade precision, from molecule to bottle.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aurum-botanics-4.jpg" href="hf_20260805_171318_a887ea46-02ea-4b65-b116-db1a8a00ef57.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 5 -->
+<div class="card" data-ad-text="Find Your Everyday Calm\n\nSee why so many are making it part of their daily ritual.\n\n---\n\nTwo women, one honest conversation about what actually fits into a daily routine.\n\nKeep reading and I'll tell you:\n\n#1 - What &amp;quot;everyday calm&amp;quot; really means\n#2 - How to build a routine that sticks..." data-category="cbd" data-filename="nordic-wellness-5" data-index="5">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">NW</div>
+<div class="page-info">
+<div class="page-name">Nordic Wellness</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Two women, one honest conversation about what actually fits into a daily routine.
 
 Keep reading and I'll tell you:
 
 #1 - What "everyday calm" really means
 #2 - How to build a routine that sticks...</div>
-      <div class="creative">
-        <img src="hf_20260805_171502_52c76b3a-335e-4396-8a28-b17176940717.jpg" alt="Nordic Wellness CBD ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">NORDICWELLNESS.COM</div>
-          <div class="headline">Find Your Everyday Calm</div>
-          <div class="description">See why so many are making it part of their daily ritual.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AB</div>
-        <div class="page-info">
-          <div class="page-name">Aura Botanicals</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">500mg. One dropper. A concentrated dose of calm.
+<div class="creative">
+<img alt="Nordic Wellness CBD ad" src="hf_20260805_171502_52c76b3a-335e-4396-8a28-b17176940717.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">NORDICWELLNESS.COM</div>
+<div class="headline">Find Your Everyday Calm</div>
+<div class="description">See why so many are making it part of their daily ritual.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="nordic-wellness-5.jpg" href="hf_20260805_171502_52c76b3a-335e-4396-8a28-b17176940717.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 6 -->
+<div class="card" data-ad-text="500mg of Pure Botanical Power\n\nPremium hemp extract, concentrated for when you need it most.\n\n---\n\n500mg. One dropper. A concentrated dose of calm.\n\nKeep reading below and I'll break down:\n\n#1 - What makes this formula different\n#2 - How to use it for maximum effect..." data-category="cbd" data-filename="aura-botanicals-6" data-index="6">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AB</div>
+<div class="page-info">
+<div class="page-name">Aura Botanicals</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">500mg. One dropper. A concentrated dose of calm.
 
 Keep reading below and I'll break down:
 
 #1 - What makes this formula different
 #2 - How to use it for maximum effect...</div>
-      <div class="creative">
-        <img src="hf_20260805_171519_3de163ca-6840-476d-89c6-7aa5db66ae69.jpg" alt="Aura Botanical CBD Serum ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURABOTANICALS.COM</div>
-          <div class="headline">500mg of Pure Botanical Power</div>
-          <div class="description">Premium hemp extract, concentrated for when you need it most.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AB</div>
-        <div class="page-info">
-          <div class="page-name">Aurum Botanics</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Not every CBD product is designed to feel like a ritual. This one is.
+<div class="creative">
+<img alt="Aura Botanical CBD Serum ad" src="hf_20260805_171519_3de163ca-6840-476d-89c6-7aa5db66ae69.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURABOTANICALS.COM</div>
+<div class="headline">500mg of Pure Botanical Power</div>
+<div class="description">Premium hemp extract, concentrated for when you need it most.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aura-botanicals-6.jpg" href="hf_20260805_171519_3de163ca-6840-476d-89c6-7aa5db66ae69.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 7 -->
+<div class="card" data-ad-text="Elevate Your Relief Ritual\n\nA refined, elevated approach to everyday wellness.\n\n---\n\nNot every CBD product is designed to feel like a ritual. This one is.\n\nKeep reading and I'll show you:\n\n#1 - What makes an elixir different from an oil\n#2 - Why the details matter..." data-category="cbd" data-filename="aurum-botanics-7" data-index="7">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AB</div>
+<div class="page-info">
+<div class="page-name">Aurum Botanics</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Not every CBD product is designed to feel like a ritual. This one is.
 
 Keep reading and I'll show you:
 
 #1 - What makes an elixir different from an oil
 #2 - Why the details matter...</div>
-      <div class="creative">
-        <img src="hf_20260805_171532_75c23eeb-5952-4ac5-ac9a-414278cdfeea__1_.jpg" alt="Aurum Botanics Luxury CBD Elixir ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURUMBOTANICS.COM</div>
-          <div class="headline">Elevate Your Relief Ritual</div>
-          <div class="description">A refined, elevated approach to everyday wellness.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RC</div>
-        <div class="page-info">
-          <div class="page-name">Recovery CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">The pain doesn't wait. Neither should your relief.
+<div class="creative">
+<img alt="Aurum Botanics Luxury CBD Elixir ad" src="hf_20260805_171532_75c23eeb-5952-4ac5-ac9a-414278cdfeea__1_.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURUMBOTANICS.COM</div>
+<div class="headline">Elevate Your Relief Ritual</div>
+<div class="description">A refined, elevated approach to everyday wellness.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aurum-botanics-7.jpg" href="hf_20260805_171532_75c23eeb-5952-4ac5-ac9a-414278cdfeea__1_.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 8 -->
+<div class="card" data-ad-text="From Wrecked to Unstoppable\n\nRecovery CBD — because grinding through pain isn't the only option.\n\n---\n\nThe pain doesn't wait. Neither should your relief.\n\nHere's the shift thousands are making:\n\n#1 - From gritting your teeth to standing tall\n#2 - What changed in their daily routine..." data-category="cbd" data-filename="recovery-cbd-8" data-index="8">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RC</div>
+<div class="page-info">
+<div class="page-name">Recovery CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">The pain doesn't wait. Neither should your relief.
 
 Here's the shift thousands are making:
 
 #1 - From gritting your teeth to standing tall
 #2 - What changed in their daily routine...</div>
-      <div class="creative">
-        <img src="hf_20260806_195421_d2fe1255-031e-456c-a43a-8538555773b9.jpg" alt="Recovery CBD before after ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RECOVERYCBD.COM</div>
-          <div class="headline">From Wrecked to Unstoppable</div>
-          <div class="description">Recovery CBD — because grinding through pain isn't the only option.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 9 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RR</div>
-        <div class="page-info">
-          <div class="page-name">Rapid Relief CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Every minute in pain is a minute wasted.
+<div class="creative">
+<img alt="Recovery CBD before after ad" src="hf_20260806_195421_d2fe1255-031e-456c-a43a-8538555773b9.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RECOVERYCBD.COM</div>
+<div class="headline">From Wrecked to Unstoppable</div>
+<div class="description">Recovery CBD — because grinding through pain isn't the only option.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="recovery-cbd-8.jpg" href="hf_20260806_195421_d2fe1255-031e-456c-a43a-8538555773b9.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 9 -->
+<div class="card" data-ad-text="Relief On the Clock\n\nA fast-acting formula built for people who don't have time to wait.\n\n---\n\nEvery minute in pain is a minute wasted.\n\nHere's why speed matters:\n\n#1 - How fast-acting formulas actually work\n#2 - What to look for before you buy..." data-category="cbd" data-filename="rapid-relief-cbd-9" data-index="9">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RR</div>
+<div class="page-info">
+<div class="page-name">Rapid Relief CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Every minute in pain is a minute wasted.
 
 Here's why speed matters:
 
 #1 - How fast-acting formulas actually work
 #2 - What to look for before you buy...</div>
-      <div class="creative">
-        <img src="hf_20260806_195455_52acb6a3-51d0-46e5-8092-fa94d9c9a6ec.jpg" alt="Rapid Relief CBD clock ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RAPIDRELIEFCBD.COM</div>
-          <div class="headline">Relief On the Clock</div>
-          <div class="description">A fast-acting formula built for people who don't have time to wait.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 10 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CO</div>
-        <div class="page-info">
-          <div class="page-name">CBD Oil Clinical</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">This is what your doctor sees. Here's what they're telling patients about it.
+<div class="creative">
+<img alt="Rapid Relief CBD clock ad" src="hf_20260806_195455_52acb6a3-51d0-46e5-8092-fa94d9c9a6ec.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RAPIDRELIEFCBD.COM</div>
+<div class="headline">Relief On the Clock</div>
+<div class="description">A fast-acting formula built for people who don't have time to wait.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="rapid-relief-cbd-9.jpg" href="hf_20260806_195455_52acb6a3-51d0-46e5-8092-fa94d9c9a6ec.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 10 -->
+<div class="card" data-ad-text="The Spot Doctors Are Pointing To\n\nFull-spectrum CBD oil, the way clinicians are talking about it.\n\n---\n\nThis is what your doctor sees. Here's what they're telling patients about it.\n\nKeep reading and I'll break down:\n\n#1 - Why this spot matters more than you think\n#2 - What clinicians are recommending alongside it..." data-category="cbd" data-filename="cbd-oil-clinical-10" data-index="10">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CO</div>
+<div class="page-info">
+<div class="page-name">CBD Oil Clinical</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">This is what your doctor sees. Here's what they're telling patients about it.
 
 Keep reading and I'll break down:
 
 #1 - Why this spot matters more than you think
 #2 - What clinicians are recommending alongside it...</div>
-      <div class="creative">
-        <img src="hf_20260806_195620_669b93c6-5f27-4f28-a0e9-1eedf97dda75.jpg" alt="Doctor pointing at X-ray CBD Oil ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDOILCLINICAL.COM</div>
-          <div class="headline">The Spot Doctors Are Pointing To</div>
-          <div class="description">Full-spectrum CBD oil, the way clinicians are talking about it.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 11 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">BC</div>
-        <div class="page-info">
-          <div class="page-name">Balance CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Pain doesn't just hurt. It breaks you down piece by piece.
+<div class="creative">
+<img alt="Doctor pointing at X-ray CBD Oil ad" src="hf_20260806_195620_669b93c6-5f27-4f28-a0e9-1eedf97dda75.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDOILCLINICAL.COM</div>
+<div class="headline">The Spot Doctors Are Pointing To</div>
+<div class="description">Full-spectrum CBD oil, the way clinicians are talking about it.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-oil-clinical-10.jpg" href="hf_20260806_195620_669b93c6-5f27-4f28-a0e9-1eedf97dda75.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 11 -->
+<div class="card" data-ad-text="Stop the Shatter\n\nBuilt to hold you together when pain tries to take you apart.\n\n---\n\nPain doesn't just hurt. It breaks you down piece by piece.\n\nKeep reading below and I'll show you:\n\n#1 - What &amp;quot;breaking point&amp;quot; actually feels like\n#2 - How people are holding it together..." data-category="cbd" data-filename="balance-cbd-11" data-index="11">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">BC</div>
+<div class="page-info">
+<div class="page-name">Balance CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Pain doesn't just hurt. It breaks you down piece by piece.
 
 Keep reading below and I'll show you:
 
 #1 - What "breaking point" actually feels like
 #2 - How people are holding it together...</div>
-      <div class="creative">
-        <img src="hf_20260806_195744_7cff18ec-2e84-4e55-83e7-53680ae321e8.jpg" alt="Balance CBD Oil shattering figure ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">BALANCECBD.COM</div>
-          <div class="headline">Stop the Shatter</div>
-          <div class="description">Built to hold you together when pain tries to take you apart.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 12 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RW</div>
-        <div class="page-info">
-          <div class="page-name">Renewal CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Your spine takes the hit first. Give it something back.
+<div class="creative">
+<img alt="Balance CBD Oil shattering figure ad" src="hf_20260806_195744_7cff18ec-2e84-4e55-83e7-53680ae321e8.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">BALANCECBD.COM</div>
+<div class="headline">Stop the Shatter</div>
+<div class="description">Built to hold you together when pain tries to take you apart.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="balance-cbd-11.jpg" href="hf_20260806_195744_7cff18ec-2e84-4e55-83e7-53680ae321e8.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 12 -->
+<div class="card" data-ad-text="Rebuild From the Inside Out\n\nTargeted relief for the toughest pain points.\n\n---\n\nYour spine takes the hit first. Give it something back.\n\nHere's what we mean:\n\n#1 - Why targeted relief starts at the source\n#2 - What &amp;quot;rebuilding&amp;quot; looks like day to day..." data-category="cbd" data-filename="renewal-cbd-12" data-index="12">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RW</div>
+<div class="page-info">
+<div class="page-name">Renewal CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Your spine takes the hit first. Give it something back.
 
 Here's what we mean:
 
 #1 - Why targeted relief starts at the source
 #2 - What "rebuilding" looks like day to day...</div>
-      <div class="creative">
-        <img src="hf_20260806_195746_250ee0bf-5f83-49f8-9e40-e9a725e7b95f.jpg" alt="Renewal CBD shattering spine ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RENEWALCBD.COM</div>
-          <div class="headline">Rebuild From the Inside Out</div>
-          <div class="description">Targeted relief for the toughest pain points.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 13 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CR</div>
-        <div class="page-info">
-          <div class="page-name">CBD Recovery Oil</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">The grind broke you down. Recovery builds you back up.
+<div class="creative">
+<img alt="Renewal CBD shattering spine ad" src="hf_20260806_195746_250ee0bf-5f83-49f8-9e40-e9a725e7b95f.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RENEWALCBD.COM</div>
+<div class="headline">Rebuild From the Inside Out</div>
+<div class="description">Targeted relief for the toughest pain points.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="renewal-cbd-12.jpg" href="hf_20260806_195746_250ee0bf-5f83-49f8-9e40-e9a725e7b95f.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 13 -->
+<div class="card" data-ad-text="Unleash Your Potential\n\nFuel for the after, not just the before.\n\n---\n\nThe grind broke you down. Recovery builds you back up.\n\nKeep reading and I'll show you:\n\n#1 - What changed between the barbell and the stretch\n#2 - Why active people are adding this to their routine..." data-category="cbd" data-filename="cbd-recovery-oil-13" data-index="13">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CR</div>
+<div class="page-info">
+<div class="page-name">CBD Recovery Oil</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">The grind broke you down. Recovery builds you back up.
 
 Keep reading and I'll show you:
 
 #1 - What changed between the barbell and the stretch
 #2 - Why active people are adding this to their routine...</div>
-      <div class="creative">
-        <img src="hf_20260806_195757_5c7d13fe-c36e-44a9-a892-a34b77646a02.jpg" alt="CBD Recovery Oil weightlifter before after ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDRECOVERYOIL.COM</div>
-          <div class="headline">Unleash Your Potential</div>
-          <div class="description">Fuel for the after, not just the before.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 14 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RV</div>
-        <div class="page-info">
-          <div class="page-name">Revive CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Every rep breaks you down. Revive brings you back stronger.
+<div class="creative">
+<img alt="CBD Recovery Oil weightlifter before after ad" src="hf_20260806_195757_5c7d13fe-c36e-44a9-a892-a34b77646a02.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDRECOVERYOIL.COM</div>
+<div class="headline">Unleash Your Potential</div>
+<div class="description">Fuel for the after, not just the before.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-recovery-oil-13.jpg" href="hf_20260806_195757_5c7d13fe-c36e-44a9-a892-a34b77646a02.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 14 -->
+<div class="card" data-ad-text="Before: The Grind. After: Unleashed.\n\nMuscle &amp; joint relief built for people who don't quit.\n\n---\n\nEvery rep breaks you down. Revive brings you back stronger.\n\nHere's the difference:\n\n#1 - The grind versus the comeback\n#2 - What's in the bottle between the two..." data-category="cbd" data-filename="revive-cbd-14" data-index="14">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RV</div>
+<div class="page-info">
+<div class="page-name">Revive CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Every rep breaks you down. Revive brings you back stronger.
 
 Here's the difference:
 
 #1 - The grind versus the comeback
 #2 - What's in the bottle between the two...</div>
-      <div class="creative">
-        <img src="hf_20260806_195758_4c030202-7947-4be3-ae26-2047f182c876.jpg" alt="Revive CBD before grind after unleashed ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">REVIVECBD.COM</div>
-          <div class="headline">Before: The Grind. After: Unleashed.</div>
-          <div class="description">Muscle & joint relief built for people who don't quit.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 15 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RR</div>
-        <div class="page-info">
-          <div class="page-name">Rapid Relief CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">3 seconds. That's all it takes to start.
+<div class="creative">
+<img alt="Revive CBD before grind after unleashed ad" src="hf_20260806_195758_4c030202-7947-4be3-ae26-2047f182c876.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">REVIVECBD.COM</div>
+<div class="headline">Before: The Grind. After: Unleashed.</div>
+<div class="description">Muscle &amp; joint relief built for people who don't quit.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="revive-cbd-14.jpg" href="hf_20260806_195758_4c030202-7947-4be3-ae26-2047f182c876.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 15 -->
+<div class="card" data-ad-text="Seconds to Relief. Not Hours.\n\nPrecision-dosed, fast-absorbing CBD formula.\n\n---\n\n3 seconds. That's all it takes to start.\n\nKeep reading and I'll explain:\n\n#1 - Why absorption speed actually matters\n#2 - How this formula is dosed for precision..." data-category="cbd" data-filename="rapid-relief-cbd-15" data-index="15">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RR</div>
+<div class="page-info">
+<div class="page-name">Rapid Relief CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">3 seconds. That's all it takes to start.
 
 Keep reading and I'll explain:
 
 #1 - Why absorption speed actually matters
 #2 - How this formula is dosed for precision...</div>
-      <div class="creative">
-        <img src="hf_20260806_195810_1f03f468-e6a9-423d-a479-ffb0b3383c20.jpg" alt="Rapid Relief CBD dropper stopwatch ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RAPIDRELIEFCBD.COM</div>
-          <div class="headline">Seconds to Relief. Not Hours.</div>
-          <div class="description">Precision-dosed, fast-absorbing CBD formula.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 16 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">AU</div>
-        <div class="page-info">
-          <div class="page-name">Aurum CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Even the toughest armor cracks eventually.
+<div class="creative">
+<img alt="Rapid Relief CBD dropper stopwatch ad" src="hf_20260806_195810_1f03f468-e6a9-423d-a479-ffb0b3383c20.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RAPIDRELIEFCBD.COM</div>
+<div class="headline">Seconds to Relief. Not Hours.</div>
+<div class="description">Precision-dosed, fast-absorbing CBD formula.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="rapid-relief-cbd-15.jpg" href="hf_20260806_195810_1f03f468-e6a9-423d-a479-ffb0b3383c20.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 16 -->
+<div class="card" data-ad-text="Break the Armor. Find the Relief.\n\nAurum CBD — mythic-grade relief for pain that won't back down.\n\n---\n\nEven the toughest armor cracks eventually.\n\nHere's what's inside that crack:\n\n#1 - What &amp;quot;Mythic Relief&amp;quot; actually means\n#2 - Why we built this formula for pain that won't quit..." data-category="cbd" data-filename="aurum-cbd-16" data-index="16">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">AU</div>
+<div class="page-info">
+<div class="page-name">Aurum CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Even the toughest armor cracks eventually.
 
 Here's what's inside that crack:
 
 #1 - What "Mythic Relief" actually means
 #2 - Why we built this formula for pain that won't quit...</div>
-      <div class="creative">
-        <img src="hf_20260806_201326_1da61b2f-0931-4bbc-a67c-ba0d34ce8590.jpg" alt="Aurum CBD Mythic Relief armor ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">AURUMCBD.COM</div>
-          <div class="headline">Break the Armor. Find the Relief.</div>
-          <div class="description">Aurum CBD — mythic-grade relief for pain that won't back down.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 17 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RC</div>
-        <div class="page-info">
-          <div class="page-name">Recover CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">The last stretch is where it hurts most.
+<div class="creative">
+<img alt="Aurum CBD Mythic Relief armor ad" src="hf_20260806_201326_1da61b2f-0931-4bbc-a67c-ba0d34ce8590.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">AURUMCBD.COM</div>
+<div class="headline">Break the Armor. Find the Relief.</div>
+<div class="description">Aurum CBD — mythic-grade relief for pain that won't back down.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="aurum-cbd-16.jpg" href="hf_20260806_201326_1da61b2f-0931-4bbc-a67c-ba0d34ce8590.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 17 -->
+<div class="card" data-ad-text="Push Through. Recover Faster.\n\nRecover CBD — built for the finish line, not the sideline.\n\n---\n\nThe last stretch is where it hurts most.\n\nHere's what happens after the finish line:\n\n#1 - What real athletes reach for post-race\n#2 - Why recovery matters as much as the run..." data-category="cbd" data-filename="recover-cbd-17" data-index="17">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RC</div>
+<div class="page-info">
+<div class="page-name">Recover CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">The last stretch is where it hurts most.
 
 Here's what happens after the finish line:
 
 #1 - What real athletes reach for post-race
 #2 - Why recovery matters as much as the run...</div>
-      <div class="creative">
-        <img src="hf_20260806_201338_ffb364e1-b105-43aa-94e7-eec553b92c46.jpg" alt="Recover CBD runner finish line ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RECOVERCBD.COM</div>
-          <div class="headline">Push Through. Recover Faster.</div>
-          <div class="description">Recover CBD — built for the finish line, not the sideline.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 18 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RC</div>
-        <div class="page-info">
-          <div class="page-name">Recover CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Crossing the line is only half the battle.
+<div class="creative">
+<img alt="Recover CBD runner finish line ad" src="hf_20260806_201338_ffb364e1-b105-43aa-94e7-eec553b92c46.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RECOVERCBD.COM</div>
+<div class="headline">Push Through. Recover Faster.</div>
+<div class="description">Recover CBD — built for the finish line, not the sideline.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="recover-cbd-17.jpg" href="hf_20260806_201338_ffb364e1-b105-43aa-94e7-eec553b92c46.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 18 -->
+<div class="card" data-ad-text="Cross The Line. Then Recover.\n\nRoll-on relief made for the moment right after you give everything.\n\n---\n\nCrossing the line is only half the battle.\n\nKeep reading and I'll show you:\n\n#1 - What to do in the minutes right after\n#2 - Why roll-on relief travels with the pros..." data-category="cbd" data-filename="recover-cbd-18" data-index="18">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RC</div>
+<div class="page-info">
+<div class="page-name">Recover CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Crossing the line is only half the battle.
 
 Keep reading and I'll show you:
 
 #1 - What to do in the minutes right after
 #2 - Why roll-on relief travels with the pros...</div>
-      <div class="creative">
-        <img src="hf_20260806_201340_1d64729d-90c5-4049-bb52-4b76e0f0e65c.jpg" alt="Recover CBD roll-on finish tape ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RECOVERCBD.COM</div>
-          <div class="headline">Cross The Line. Then Recover.</div>
-          <div class="description">Roll-on relief made for the moment right after you give everything.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 19 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">RX</div>
-        <div class="page-info">
-          <div class="page-name">Relax CBD</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Tension doesn't clock out at 5pm.
+<div class="creative">
+<img alt="Recover CBD roll-on finish tape ad" src="hf_20260806_201340_1d64729d-90c5-4049-bb52-4b76e0f0e65c.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RECOVERCBD.COM</div>
+<div class="headline">Cross The Line. Then Recover.</div>
+<div class="description">Roll-on relief made for the moment right after you give everything.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="recover-cbd-18.jpg" href="hf_20260806_201340_1d64729d-90c5-4049-bb52-4b76e0f0e65c.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 19 -->
+<div class="card" data-ad-text="Relax Into Relief\n\nA roll-on ritual for the tension you carry all day.\n\n---\n\nTension doesn't clock out at 5pm.\n\nHere's a simple ritual that's helping people unwind:\n\n#1 - Where most people carry their stress\n#2 - Why a 10-second roll-on works into a routine..." data-category="cbd" data-filename="relax-cbd-19" data-index="19">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">RX</div>
+<div class="page-info">
+<div class="page-name">Relax CBD</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Tension doesn't clock out at 5pm.
 
 Here's a simple ritual that's helping people unwind:
 
 #1 - Where most people carry their stress
 #2 - Why a 10-second roll-on works into a routine...</div>
-      <div class="creative">
-        <img src="hf_20260806_202014_4243d4f3-ca87-406b-85d4-44d141e828c2.jpg" alt="Relax CBD roll-on shoulder ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">RELAXCBD.COM</div>
-          <div class="headline">Relax Into Relief</div>
-          <div class="description">A roll-on ritual for the tension you carry all day.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 20 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CB</div>
-        <div class="page-info">
-          <div class="page-name">CBD Relief Oil</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">Some days ask more of your back than others.
+<div class="creative">
+<img alt="Relax CBD roll-on shoulder ad" src="hf_20260806_202014_4243d4f3-ca87-406b-85d4-44d141e828c2.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">RELAXCBD.COM</div>
+<div class="headline">Relax Into Relief</div>
+<div class="description">A roll-on ritual for the tension you carry all day.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="relax-cbd-19.jpg" href="hf_20260806_202014_4243d4f3-ca87-406b-85d4-44d141e828c2.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 20 -->
+<div class="card" data-ad-text="Some Days Ask More Of Your Back\n\nCBD Relief Oil — support for the days pain shows up uninvited.\n\n---\n\nSome days ask more of your back than others.\n\nHere's what's been helping people get through them:\n\n#1 - A small habit before you sit down for the day\n#2 - Why more people are keeping this on the side table..." data-category="cbd" data-filename="cbd-relief-oil-20" data-index="20">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CB</div>
+<div class="page-info">
+<div class="page-name">CBD Relief Oil</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">Some days ask more of your back than others.
 
 Here's what's been helping people get through them:
 
 #1 - A small habit before you sit down for the day
 #2 - Why more people are keeping this on the side table...</div>
-      <div class="creative">
-        <img src="hf_20260806_202109_660cecff-06b7-40ae-a94d-7e00e7f06ad3.jpg" alt="CBD Relief Oil woman back pain ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDRELIEFOIL.COM</div>
-          <div class="headline">Some Days Ask More Of Your Back</div>
-          <div class="description">CBD Relief Oil — support for the days pain shows up uninvited.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 21 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CC</div>
-        <div class="page-info">
-          <div class="page-name">CBD Comfort Drops</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">You shouldn't have to plan your day around your back.
+<div class="creative">
+<img alt="CBD Relief Oil woman back pain ad" src="hf_20260806_202109_660cecff-06b7-40ae-a94d-7e00e7f06ad3.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDRELIEFOIL.COM</div>
+<div class="headline">Some Days Ask More Of Your Back</div>
+<div class="description">CBD Relief Oil — support for the days pain shows up uninvited.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-relief-oil-20.jpg" href="hf_20260806_202109_660cecff-06b7-40ae-a94d-7e00e7f06ad3.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 21 -->
+<div class="card" data-ad-text="Comfort, Without the Wait\n\nCBD Comfort Drops — fast-absorbing support for everyday aches.\n\n---\n\nYou shouldn't have to plan your day around your back.\n\nKeep reading and I'll explain:\n\n#1 - Why fast-absorbing matters more than you think\n#2 - What a &amp;quot;comfort routine&amp;quot; actually looks like..." data-category="cbd" data-filename="cbd-comfort-drops-21" data-index="21">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CC</div>
+<div class="page-info">
+<div class="page-name">CBD Comfort Drops</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">You shouldn't have to plan your day around your back.
 
 Keep reading and I'll explain:
 
 #1 - Why fast-absorbing matters more than you think
 #2 - What a "comfort routine" actually looks like...</div>
-      <div class="creative">
-        <img src="hf_20260806_202112_21798ba5-f7b2-4438-b7a9-c76aa96b11cd.jpg" alt="CBD Comfort Drops woman back pain ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDCOMFORTDROPS.COM</div>
-          <div class="headline">Comfort, Without the Wait</div>
-          <div class="description">CBD Comfort Drops — fast-absorbing support for everyday aches.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 22 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CO</div>
-        <div class="page-info">
-          <div class="page-name">CBD Oil</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">The lamp goes on. The phone goes down. The day finally ends.
+<div class="creative">
+<img alt="CBD Comfort Drops woman back pain ad" src="hf_20260806_202112_21798ba5-f7b2-4438-b7a9-c76aa96b11cd.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDCOMFORTDROPS.COM</div>
+<div class="headline">Comfort, Without the Wait</div>
+<div class="description">CBD Comfort Drops — fast-absorbing support for everyday aches.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-comfort-drops-21.jpg" href="hf_20260806_202112_21798ba5-f7b2-4438-b7a9-c76aa96b11cd.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 22 -->
+<div class="card" data-ad-text="Wind Down. For Real This Time.\n\nCBD Oil — part of the nightly reset before you turn off the light.\n\n---\n\nThe lamp goes on. The phone goes down. The day finally ends.\n\nHere's what's becoming part of that routine:\n\n#1 - Why the last 20 minutes matter most\n#2 - How people are building a wind-down ritual that sticks..." data-category="cbd" data-filename="cbd-oil-22" data-index="22">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CO</div>
+<div class="page-info">
+<div class="page-name">CBD Oil</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">The lamp goes on. The phone goes down. The day finally ends.
 
 Here's what's becoming part of that routine:
 
 #1 - Why the last 20 minutes matter most
 #2 - How people are building a wind-down ritual that sticks...</div>
-      <div class="creative">
-        <img src="hf_20260806_202129_38c82f1f-9224-4d70-acfb-fba67c5c1f6f.jpg" alt="CBD Oil nightstand lamp book ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDOIL.COM</div>
-          <div class="headline">Wind Down. For Real This Time.</div>
-          <div class="description">CBD Oil — part of the nightly reset before you turn off the light.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
-
-    <!-- Card 23 -->
-    <div class="card">
-      <div class="top-divider"></div>
-      <div class="header-row">
-        <div class="avatar">CB</div>
-        <div class="page-info">
-          <div class="page-name">CBD Nightly</div>
-          <div class="sponsored">Sponsored</div>
-        </div>
-      </div>
-      <div class="primary-text">2am. Wide awake. Mind still running.
+<div class="creative">
+<img alt="CBD Oil nightstand lamp book ad" src="hf_20260806_202129_38c82f1f-9224-4d70-acfb-fba67c5c1f6f.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDOIL.COM</div>
+<div class="headline">Wind Down. For Real This Time.</div>
+<div class="description">CBD Oil — part of the nightly reset before you turn off the light.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-oil-22.jpg" href="hf_20260806_202129_38c82f1f-9224-4d70-acfb-fba67c5c1f6f.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 23 -->
+<div class="card" data-ad-text="When Your Mind Won't Quiet Down\n\nCBD — a steadier way to ease into rest.\n\n---\n\n2am. Wide awake. Mind still running.\n\nHere's what's helping people quiet down at night:\n\n#1 - Why racing thoughts hit hardest after midnight\n#2 - A steadier way to ease into rest..." data-category="cbd" data-filename="cbd-nightly-23" data-index="23">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">CB</div>
+<div class="page-info">
+<div class="page-name">CBD Nightly</div>
+<div class="sponsored">Sponsored</div>
+</div>
+</div>
+<div class="primary-text">2am. Wide awake. Mind still running.
 
 Here's what's helping people quiet down at night:
 
 #1 - Why racing thoughts hit hardest after midnight
 #2 - A steadier way to ease into rest...</div>
-      <div class="creative">
-        <img src="hf_20260806_202142_9be576e2-d5eb-4280-a9e9-c739c370d8a0.jpg" alt="CBD man sitting bed distressed night ad">
-      </div>
-      <div class="link-card">
-        <div class="link-text">
-          <div class="domain">CBDNIGHTLY.COM</div>
-          <div class="headline">When Your Mind Won't Quiet Down</div>
-          <div class="description">CBD — a steadier way to ease into rest.</div>
-        </div>
-        <div class="learn-more-btn">Learn more</div>
-      </div>
-    </div>
+<div class="creative">
+<img alt="CBD man sitting bed distressed night ad" src="hf_20260806_202142_9be576e2-d5eb-4280-a9e9-c739c370d8a0.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">CBDNIGHTLY.COM</div>
+<div class="headline">When Your Mind Won't Quiet Down</div>
+<div class="description">CBD — a steadier way to ease into rest.</div>
+</div>
+<div class="learn-more-btn">Learn more</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="cbd-nightly-23.jpg" href="hf_20260806_202142_9be576e2-d5eb-4280-a9e9-c739c370d8a0.jpg">Download Image</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Download Text</button></div></div>
+<!-- Card 24 -->
+<div class="card" data-ad-text="Der Testsieger 2026\n\nLiboPrime – Support für Kraft, Ausdauer &amp; täglichen Antrieb. Jetzt mit 40% Rabatt.\n\n---\n\nWir haben 7 ED-Pillen getestet – nur eine hat wirklich überzeugt.\n\nHier ist, was wir herausgefunden haben:\n\n#1 - Warum LiboPrime die Konkurrenz abgehängt hat\n#2 - Was die Redaktion 2026 überzeugt hat..." data-category="libo" data-filename="liboprime-24" data-index="24">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Wir haben 7 ED-Pillen getestet – nur eine hat wirklich überzeugt.
 
-  </div>
+Hier ist, was wir herausgefunden haben:
+
+#1 - Warum LiboPrime die Konkurrenz abgehängt hat
+#2 - Was die Redaktion 2026 überzeugt hat...</div>
+<div class="creative">
+<img alt="LiboPrime Testsieger 2026 ad" src="hf_20260810_181242_f13c0656-4c49-4ec1-b918-9ac0cc5059e5.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Der Testsieger 2026</div>
+<div class="description">LiboPrime – Support für Kraft, Ausdauer &amp; täglichen Antrieb. Jetzt mit 40% Rabatt.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-24.jpg" href="hf_20260810_181242_f13c0656-4c49-4ec1-b918-9ac0cc5059e5.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 25 -->
+<div class="card" data-ad-text="Tägliche Performance-Unterstützung\n\nLiboPrime – für Antrieb, Ausdauer und Leistung im Alltag.\n\n---\n\nManche Tage brauchen einfach mehr Energie als andere.\n\nHier ist, was immer mehr Männer in ihre Routine aufnehmen:\n\n#1 - Warum tägliche Unterstützung den Unterschied macht\n#2 - Wie einfach sich das in den Alltag einbauen lässt..." data-category="libo" data-filename="liboprime-25" data-index="25">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manche Tage brauchen einfach mehr Energie als andere.
+
+Hier ist, was immer mehr Männer in ihre Routine aufnehmen:
+
+#1 - Warum tägliche Unterstützung den Unterschied macht
+#2 - Wie einfach sich das in den Alltag einbauen lässt...</div>
+<div class="creative">
+<img alt="LiboPrime tägliche Performance ad" src="hf_20260810_181512_5ba34fbe-0868-4ce6-86a8-67bdefa6c490.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Tägliche Performance-Unterstützung</div>
+<div class="description">LiboPrime – für Antrieb, Ausdauer und Leistung im Alltag.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-25.jpg" href="hf_20260810_181512_5ba34fbe-0868-4ce6-86a8-67bdefa6c490.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 26 -->
+<div class="card" data-ad-text="Adern sichtbar. Volle Leistung.\n\nLiboPrime – Support für Kraft, Ausdauer &amp; täglichen Antrieb.\n\n---\n\n4,8 von 5 Sternen – und ein Grund, warum immer mehr Männer wechseln.\n\nHier ist, worauf es ankommt:\n\n#1 - Was &amp;quot;volle Leistung&amp;quot; wirklich bedeutet\n#2 - Warum die Bewertungen so hoch sind..." data-category="libo" data-filename="liboprime-26" data-index="26">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">4,8 von 5 Sternen – und ein Grund, warum immer mehr Männer wechseln.
+
+Hier ist, worauf es ankommt:
+
+#1 - Was "volle Leistung" wirklich bedeutet
+#2 - Warum die Bewertungen so hoch sind...</div>
+<div class="creative">
+<img alt="LiboPrime Adern sichtbar ad" src="hf_20260810_181546_2c07bba7-8431-4b51-a7c6-bfefe255a58c.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Adern sichtbar. Volle Leistung.</div>
+<div class="description">LiboPrime – Support für Kraft, Ausdauer &amp; täglichen Antrieb.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-26.jpg" href="hf_20260810_181546_2c07bba7-8431-4b51-a7c6-bfefe255a58c.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 27 -->
+<div class="card" data-ad-text="Mach's besser.\n\nLiboPrime – unterstützt deinen Antrieb, für Kraft &amp; Ausdauer, einfach in deine Routine.\n\n---\n\nBlaue Pillen. Tägliche Kegel-Übungen. Testosteron-Booster. Schnelle &amp;quot;Lösungen&amp;quot;.\n\nHier ist, warum die meisten davon nicht wirklich helfen:\n\n#1 - Was diese Ansätze gemeinsam haben\n#2 - Die #1-Lösung, die wirklich funktioniert..." data-category="libo" data-filename="liboprime-27" data-index="27">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Blaue Pillen. Tägliche Kegel-Übungen. Testosteron-Booster. Schnelle "Lösungen".
+
+Hier ist, warum die meisten davon nicht wirklich helfen:
+
+#1 - Was diese Ansätze gemeinsam haben
+#2 - Die #1-Lösung, die wirklich funktioniert...</div>
+<div class="creative">
+<img alt="LiboPrime dumme Wege ad" src="hf_20260810_181740_4fc40cdc-6c05-4ad3-8d99-de8ee663f904.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Mach's besser.</div>
+<div class="description">LiboPrime – unterstützt deinen Antrieb, für Kraft &amp; Ausdauer, einfach in deine Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-27.jpg" href="hf_20260810_181740_4fc40cdc-6c05-4ad3-8d99-de8ee663f904.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 28 -->
+<div class="card" data-ad-text="So sieht's wirklich aus\n\nLiboPrime – Support für Stärke, Ausdauer und täglichen Antrieb. 60 Kapseln.\n\n---\n\nKein Fake, kein Studio-Shooting – nur die Kapseln, die gerade immer mehr Männer ausprobieren.\n\nHier ist, was drinsteckt:\n\n#1 - Was LiboPrime von anderen unterscheidet\n#2 - Warum die Nachfrage gerade so stark steigt..." data-category="libo" data-filename="liboprime-28" data-index="28">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Kein Fake, kein Studio-Shooting – nur die Kapseln, die gerade immer mehr Männer ausprobieren.
+
+Hier ist, was drinsteckt:
+
+#1 - Was LiboPrime von anderen unterscheidet
+#2 - Warum die Nachfrage gerade so stark steigt...</div>
+<div class="creative">
+<img alt="LiboPrime Hand hält Flasche ad" src="hf_20260810_181918_d961d958-a135-41d7-9a90-eca975d3a709.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">So sieht's wirklich aus</div>
+<div class="description">LiboPrime – Support für Stärke, Ausdauer und täglichen Antrieb. 60 Kapseln.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-28.jpg" href="hf_20260810_181918_d961d958-a135-41d7-9a90-eca975d3a709.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 29 -->
+<div class="card" data-ad-text="Volle Leistung, jeden Tag.\n\nLiboPrime – Support for Strength, Endurance &amp; Daily Drive.\n\n---\n\nKraft. Ausdauer. Antrieb. Leistung.\n\nHier ist, warum immer mehr darauf setzen:\n\n#1 - Was hinter der täglichen Unterstützung steckt\n#2 - Wie einfach es in den Alltag passt..." data-category="libo" data-filename="liboprime-29" data-index="29">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Kraft. Ausdauer. Antrieb. Leistung.
+
+Hier ist, warum immer mehr darauf setzen:
+
+#1 - Was hinter der täglichen Unterstützung steckt
+#2 - Wie einfach es in den Alltag passt...</div>
+<div class="creative">
+<img alt="LiboPrime volle Leistung ad Frau 1" src="hf_20260810_182013_b44b4eba-771b-496a-8828-8ba94faa49f7.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Volle Leistung, jeden Tag.</div>
+<div class="description">LiboPrime – Support for Strength, Endurance &amp; Daily Drive.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-29.jpg" href="hf_20260810_182013_b44b4eba-771b-496a-8828-8ba94faa49f7.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 30 -->
+<div class="card" data-ad-text="Bereit für volle Leistung?\n\nLiboPrime – tägliche Unterstützung für Kraft, Ausdauer und Antrieb.\n\n---\n\nManche Tage fühlen sich einfach besser an als andere.\n\nHier ist der Unterschied:\n\n#1 - Was sich verändert, wenn der Antrieb stimmt\n#2 - Warum Routine hier der Schlüssel ist..." data-category="libo" data-filename="liboprime-30" data-index="30">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manche Tage fühlen sich einfach besser an als andere.
+
+Hier ist der Unterschied:
+
+#1 - Was sich verändert, wenn der Antrieb stimmt
+#2 - Warum Routine hier der Schlüssel ist...</div>
+<div class="creative">
+<img alt="LiboPrime volle Leistung ad Frau 2" src="hf_20260810_182057_167a1eb7-09d2-4663-80a1-34ec23987b1b.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Bereit für volle Leistung?</div>
+<div class="description">LiboPrime – tägliche Unterstützung für Kraft, Ausdauer und Antrieb.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-30.jpg" href="hf_20260810_182057_167a1eb7-09d2-4663-80a1-34ec23987b1b.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 31 -->
+<div class="card" data-ad-text="Fühl dich wieder voll da.\n\nLiboPrime – 60 Kapseln, tägliche Routine.\n\n---\n\nManchmal fehlt einfach das Gefühl, wieder ganz bei sich zu sein.\n\nHier ist, was helfen kann:\n\n#1 - Warum tägliche Unterstützung den Unterschied macht\n#2 - Wie einfach sich das in deine Routine einbauen lässt..." data-category="libo" data-filename="liboprime-31" data-index="31">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manchmal fehlt einfach das Gefühl, wieder ganz bei sich zu sein.
+
+Hier ist, was helfen kann:
+
+#1 - Warum tägliche Unterstützung den Unterschied macht
+#2 - Wie einfach sich das in deine Routine einbauen lässt...</div>
+<div class="creative">
+<img alt="LiboPrime fühl dich wieder voll da ad" src="hf_20260810_182234_d7ea5a96-f9a6-4211-a836-f36f26249781.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Fühl dich wieder voll da.</div>
+<div class="description">LiboPrime – 60 Kapseln, tägliche Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-31.jpg" href="hf_20260810_182234_d7ea5a96-f9a6-4211-a836-f36f26249781.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 32 -->
+<div class="card" data-ad-text="Wenn deine Routine nicht mehr ausreicht\n\nLiboPrime – für mehr tägliche Leistung.\n\n---\n\nManchmal reicht die bisherige Routine einfach nicht mehr aus.\n\nHier ist, was viele Männer jetzt versuchen:\n\n#1 - Warum Fokus, Ausdauer und Selbstvertrauen zusammenhängen\n#2 - Wie eine einfache Ergänzung den Unterschied machen kann..." data-category="libo" data-filename="liboprime-32" data-index="32">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manchmal reicht die bisherige Routine einfach nicht mehr aus.
+
+Hier ist, was viele Männer jetzt versuchen:
+
+#1 - Warum Fokus, Ausdauer und Selbstvertrauen zusammenhängen
+#2 - Wie eine einfache Ergänzung den Unterschied machen kann...</div>
+<div class="creative">
+<img alt="LiboPrime Routine nicht ausreicht ad 1" src="hf_20260810_182323_ca3ae768-ccea-4d2e-9de2-59cd03011061.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Wenn deine Routine nicht mehr ausreicht</div>
+<div class="description">LiboPrime – für mehr tägliche Leistung.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-32.jpg" href="hf_20260810_182323_ca3ae768-ccea-4d2e-9de2-59cd03011061.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 33 -->
+<div class="card" data-ad-text="Probier eine Lösung für mehr Leistung\n\nLiboPrime – Support for Strength, Endurance &amp; Daily Drive.\n\n---\n\nFokus. Ausdauer. Selbstvertrauen. Leistung.\n\nHier ist, was diese vier Dinge gemeinsam haben:\n\n#1 - Warum sie oft zusammen nachlassen\n#2 - Wie LiboPrime an allen vier Punkten ansetzt..." data-category="libo" data-filename="liboprime-33" data-index="33">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Fokus. Ausdauer. Selbstvertrauen. Leistung.
+
+Hier ist, was diese vier Dinge gemeinsam haben:
+
+#1 - Warum sie oft zusammen nachlassen
+#2 - Wie LiboPrime an allen vier Punkten ansetzt...</div>
+<div class="creative">
+<img alt="LiboPrime Routine nicht ausreicht ad 2" src="hf_20260810_182339_54ea561b-ba4d-421d-a32b-b2d2dcb8991b.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Probier eine Lösung für mehr Leistung</div>
+<div class="description">LiboPrime – Support for Strength, Endurance &amp; Daily Drive.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-33.jpg" href="hf_20260810_182339_54ea561b-ba4d-421d-a32b-b2d2dcb8991b.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 34 -->
+<div class="card" data-ad-text="Selbstvertrauen beginnt hier\n\nLiboPrime – tägliche Unterstützung für deinen Antrieb.\n\n---\n\nSelbstvertrauen fängt oft im Kleinen an – bei der täglichen Routine.\n\nHier ist, was das bedeutet:\n\n#1 - Warum tägliche Unterstützung den Unterschied macht\n#2 - Wie einfach sich das einbauen lässt..." data-category="libo" data-filename="liboprime-34" data-index="34">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Selbstvertrauen fängt oft im Kleinen an – bei der täglichen Routine.
+
+Hier ist, was das bedeutet:
+
+#1 - Warum tägliche Unterstützung den Unterschied macht
+#2 - Wie einfach sich das einbauen lässt...</div>
+<div class="creative">
+<img alt="LiboPrime Selbstvertrauen ad 1" src="hf_20260810_182411_6b32df9c-1883-4ce4-b7cd-bdfa0f36f98e.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Selbstvertrauen beginnt hier</div>
+<div class="description">LiboPrime – tägliche Unterstützung für deinen Antrieb.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-34.jpg" href="hf_20260810_182411_6b32df9c-1883-4ce4-b7cd-bdfa0f36f98e.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 35 -->
+<div class="card" data-ad-text="Wo Selbstvertrauen wirklich beginnt\n\nLiboPrime – Kraft &amp; Ausdauer für deinen Alltag.\n\n---\n\nKraft und Ausdauer für den Alltag – ganz ohne Komplikationen.\n\nHier ist, wie das aussieht:\n\n#1 - Eine einfache Routine mit 60 Kapseln\n#2 - Warum immer mehr Männer darauf setzen..." data-category="libo" data-filename="liboprime-35" data-index="35">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Kraft und Ausdauer für den Alltag – ganz ohne Komplikationen.
+
+Hier ist, wie das aussieht:
+
+#1 - Eine einfache Routine mit 60 Kapseln
+#2 - Warum immer mehr Männer darauf setzen...</div>
+<div class="creative">
+<img alt="LiboPrime Selbstvertrauen ad 2" src="hf_20260810_182415_a19ec2fd-3b0d-45f4-85c3-1fe7c6c09d76.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Wo Selbstvertrauen wirklich beginnt</div>
+<div class="description">LiboPrime – Kraft &amp; Ausdauer für deinen Alltag.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-35.jpg" href="hf_20260810_182415_a19ec2fd-3b0d-45f4-85c3-1fe7c6c09d76.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 36 -->
+<div class="card" data-ad-text="Ausgezeichnet mit 4,8 Sternen\n\nLiboPrime – Kraft, Ausdauer, Antrieb, Leistung.\n\n---\n\nFünf Sterne, tausende Bewertungen – und ein Grund, warum immer mehr Männer wechseln.\n\nHier ist, was dahintersteckt:\n\n#1 - Was Nutzer an LiboPrime am meisten schätzen\n#2 - Warum die Bewertungen so konstant hoch sind..." data-category="libo" data-filename="liboprime-36" data-index="36">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Fünf Sterne, tausende Bewertungen – und ein Grund, warum immer mehr Männer wechseln.
+
+Hier ist, was dahintersteckt:
+
+#1 - Was Nutzer an LiboPrime am meisten schätzen
+#2 - Warum die Bewertungen so konstant hoch sind...</div>
+<div class="creative">
+<img alt="LiboPrime 4.8 Sterne ad" src="hf_20260810_182512_dc0a478b-1248-4905-a4c8-dcbf6e89d020.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Ausgezeichnet mit 4,8 Sternen</div>
+<div class="description">LiboPrime – Kraft, Ausdauer, Antrieb, Leistung.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-36.jpg" href="hf_20260810_182512_dc0a478b-1248-4905-a4c8-dcbf6e89d020.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 37 -->
+<div class="card" data-ad-text="Mach's besser. Probier die #1-Lösung.\n\nLiboPrime – Power für deinen Alltag. Unterstützt Kraft &amp; Ausdauer, einfach in deine Routine.\n\n---\n\nBlaue Pillen. Kegel-Übungen. Testosteron-Booster. Schnelle &amp;quot;Lösungen&amp;quot;.\n\nHier ist, warum wir einen anderen Weg gegangen sind:\n\n#1 - Was diese Ansätze gemeinsam haben\n#2 - Wie LiboPrime deinen Antrieb täglich unterstützt..." data-category="libo" data-filename="liboprime-37" data-index="37">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Blaue Pillen. Kegel-Übungen. Testosteron-Booster. Schnelle "Lösungen".
+
+Hier ist, warum wir einen anderen Weg gegangen sind:
+
+#1 - Was diese Ansätze gemeinsam haben
+#2 - Wie LiboPrime deinen Antrieb täglich unterstützt...</div>
+<div class="creative">
+<img alt="LiboPrime dumme Wege ad 2" src="hf_20260810_182620_3415909f-3a40-4519-a0dc-8bf19df40596.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Mach's besser. Probier die #1-Lösung.</div>
+<div class="description">LiboPrime – Power für deinen Alltag. Unterstützt Kraft &amp; Ausdauer, einfach in deine Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-37.jpg" href="hf_20260810_182620_3415909f-3a40-4519-a0dc-8bf19df40596.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 38 -->
+<div class="card" data-ad-text="Vertrauen, das man sehen kann\n\nLiboPrime – Support für Kraft, Ausdauer und täglichen Antrieb.\n\n---\n\nManche Produkte brauchen keine große Show – nur ein ehrliches Gesicht.\n\nHier ist, worum es wirklich geht:\n\n#1 - Warum immer mehr Frauen es für ihre Partner empfehlen\n#2 - Was LiboPrime so unkompliziert macht..." data-category="libo" data-filename="liboprime-38" data-index="38">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manche Produkte brauchen keine große Show – nur ein ehrliches Gesicht.
+
+Hier ist, worum es wirklich geht:
+
+#1 - Warum immer mehr Frauen es für ihre Partner empfehlen
+#2 - Was LiboPrime so unkompliziert macht...</div>
+<div class="creative">
+<img alt="LiboPrime Portrait Frau ad" src="hf_20260810_173820_12b51d1d-7a42-42de-a416-184f66fe49c4.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Vertrauen, das man sehen kann</div>
+<div class="description">LiboPrime – Support für Kraft, Ausdauer und täglichen Antrieb.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-38.jpg" href="hf_20260810_173820_12b51d1d-7a42-42de-a416-184f66fe49c4.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 39 -->
+<div class="card" data-ad-text="Nicht nur für ihn wichtig\n\nLiboPrime – 60 Kapseln, tägliche Routine.\n\n---\n\nManchmal ist es die Partnerin, die den Unterschied bemerkt.\n\nHier ist, warum das Thema für beide zählt:\n\n#1 - Wie tägliche Unterstützung eure Beziehung beeinflussen kann\n#2 - Was Paare gemeinsam an LiboPrime schätzen..." data-category="libo" data-filename="liboprime-39" data-index="39">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manchmal ist es die Partnerin, die den Unterschied bemerkt.
+
+Hier ist, warum das Thema für beide zählt:
+
+#1 - Wie tägliche Unterstützung eure Beziehung beeinflussen kann
+#2 - Was Paare gemeinsam an LiboPrime schätzen...</div>
+<div class="creative">
+<img alt="LiboPrime Nahaufnahme ad" src="hf_20260810_174006_f54d796d-e2e6-4d61-91b1-771512ac438d.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Nicht nur für ihn wichtig</div>
+<div class="description">LiboPrime – 60 Kapseln, tägliche Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-39.jpg" href="hf_20260810_174006_f54d796d-e2e6-4d61-91b1-771512ac438d.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 40 -->
+<div class="card" data-ad-text="Wenn du geklickt hast, weil du mehr Leistung willst\n\nLiboPrime – Support for Strength, Endurance &amp; Daily Drive.\n\n---\n\nDu bist nicht zufällig hier gelandet.\n\nHier ist, was als Nächstes zählt:\n\n#1 - Warum LiboPrime genau dafür gemacht ist\n#2 - Wie einfach der erste Schritt sein kann..." data-category="libo" data-filename="liboprime-40" data-index="40">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Du bist nicht zufällig hier gelandet.
+
+Hier ist, was als Nächstes zählt:
+
+#1 - Warum LiboPrime genau dafür gemacht ist
+#2 - Wie einfach der erste Schritt sein kann...</div>
+<div class="creative">
+<img alt="LiboPrime wenn du geklickt hast ad 1" src="hf_20260810_182121_187f7c61-b4ec-4c7e-88fa-e8f93bb72fbd.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Wenn du geklickt hast, weil du mehr Leistung willst</div>
+<div class="description">LiboPrime – Support for Strength, Endurance &amp; Daily Drive.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-40.jpg" href="hf_20260810_182121_187f7c61-b4ec-4c7e-88fa-e8f93bb72fbd.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 41 -->
+<div class="card" data-ad-text="Starte hier, wenn du mehr willst\n\nLiboPrime ist genau dafür gemacht.\n\n---\n\nDer Klick war kein Zufall.\n\nHier ist, was du wissen solltest:\n\n#1 - Warum sich immer mehr für LiboPrime entscheiden\n#2 - Wie die tägliche Routine aussieht..." data-category="libo" data-filename="liboprime-41" data-index="41">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Der Klick war kein Zufall.
+
+Hier ist, was du wissen solltest:
+
+#1 - Warum sich immer mehr für LiboPrime entscheiden
+#2 - Wie die tägliche Routine aussieht...</div>
+<div class="creative">
+<img alt="LiboPrime wenn du geklickt hast ad 2" src="hf_20260810_182126_dc30fa66-6f72-4a15-90f7-dc81c6d29c2f.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Starte hier, wenn du mehr willst</div>
+<div class="description">LiboPrime ist genau dafür gemacht.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-41.jpg" href="hf_20260810_182126_dc30fa66-6f72-4a15-90f7-dc81c6d29c2f.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 42 -->
+<div class="card" data-ad-text="60 Kapseln. Eine Routine.\n\nLiboPrime – tägliche Unterstützung, einfach in deine Routine.\n\n---\n\nManchmal ist der einfachste Schritt der wichtigste.\n\nHier ist, was sich verändert:\n\n#1 - Warum tägliche Routine zählt\n#2 - Wie du wieder voll da bist..." data-category="libo" data-filename="liboprime-42" data-index="42">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Manchmal ist der einfachste Schritt der wichtigste.
+
+Hier ist, was sich verändert:
+
+#1 - Warum tägliche Routine zählt
+#2 - Wie du wieder voll da bist...</div>
+<div class="creative">
+<img alt="LiboPrime 60 Kapseln ad" src="hf_20260810_182227_5e656253-cad4-45a3-b24b-afe78008d46f.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">60 Kapseln. Eine Routine.</div>
+<div class="description">LiboPrime – tägliche Unterstützung, einfach in deine Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-42.jpg" href="hf_20260810_182227_5e656253-cad4-45a3-b24b-afe78008d46f.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 43 -->
+<div class="card" data-ad-text="Mach's besser. Probier die #1-Lösung.\n\nLiboPrime – Power für deinen Alltag. Unterstützt deinen Antrieb, einfach in deine Routine.\n\n---\n\nBlaue Pillen. Kegel-Übungen. Testosteron-Booster. Schnelle &amp;quot;Lösungen&amp;quot;.\n\nHier ist, was wirklich zählt:\n\n#1 - Warum diese Wege oft nicht ausreichen\n#2 - Wie LiboPrime Kraft &amp; Ausdauer unterstützt..." data-category="libo" data-filename="liboprime-43" data-index="43">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Blaue Pillen. Kegel-Übungen. Testosteron-Booster. Schnelle "Lösungen".
+
+Hier ist, was wirklich zählt:
+
+#1 - Warum diese Wege oft nicht ausreichen
+#2 - Wie LiboPrime Kraft &amp; Ausdauer unterstützt...</div>
+<div class="creative">
+<img alt="LiboPrime dumme Wege ad 3" src="hf_20260810_182624_b2b3392a-361e-4bb1-a539-9ac99729653e.jpg"/>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Mach's besser. Probier die #1-Lösung.</div>
+<div class="description">LiboPrime – Power für deinen Alltag. Unterstützt deinen Antrieb, einfach in deine Routine.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-43.jpg" href="hf_20260810_182624_b2b3392a-361e-4bb1-a539-9ac99729653e.jpg">Bild herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+<!-- Card 44 (VIDEO) -->
+<div class="card" data-ad-text="Sieh selbst, wie einfach es ist\n\nLiboPrime – Support for Strength, Endurance &amp; Daily Drive.\n\n---\n\nEin kurzer Einblick, bevor du dich entscheidest.\n\nHier ist, was das Video zeigt:\n\n#1 - Wie LiboPrime in deinen Alltag passt\n#2 - Warum immer mehr Männer wechseln..." data-category="libo" data-filename="liboprime-44" data-index="44">
+<div class="top-divider"></div>
+<div class="header-row">
+<div class="avatar">LP</div>
+<div class="page-info">
+<div class="page-name">LiboPrime</div>
+<div class="sponsored">Gesponsert</div>
+</div>
+</div>
+<div class="primary-text">Ein kurzer Einblick, bevor du dich entscheidest.
+
+Hier ist, was das Video zeigt:
+
+#1 - Wie LiboPrime in deinen Alltag passt
+#2 - Warum immer mehr Männer wechseln...</div>
+<div class="creative">
+<video controls="" loop="" muted="" poster="hf_20260810_181242_f13c0656-4c49-4ec1-b918-9ac0cc5059e5.jpg">
+<source src="hf_20260810_175343_a4252b4f-4947-4d9d-95ea-134ce17a79f2.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="link-card">
+<div class="link-text">
+<div class="domain">LIBOPRIME.COM</div>
+<div class="headline">Sieh selbst, wie einfach es ist</div>
+<div class="description">LiboPrime – Support for Strength, Endurance &amp; Daily Drive.</div>
+</div>
+<div class="learn-more-btn">Mehr erfahren</div>
+</div>
+<div class="card-actions"><a class="dl-btn" download="liboprime-44.mp4" href="hf_20260810_175343_a4252b4f-4947-4d9d-95ea-134ce17a79f2.mp4">Video herunterladen</a><button class="dl-btn dl-btn-secondary" onclick="downloadAdText(this)">Text herunterladen</button></div></div>
+</div>
+<script>
+  function showHome() {
+    document.getElementById('homeScreen').style.display = 'flex';
+    document.getElementById('categoryHeader').style.display = 'none';
+    document.querySelectorAll('.card').forEach(function(c) { c.style.display = 'none'; });
+    window.scrollTo(0, 0);
+  }
+
+  function showCategory(cat) {
+    document.getElementById('homeScreen').style.display = 'none';
+    var header = document.getElementById('categoryHeader');
+    header.style.display = 'flex';
+    document.getElementById('categoryTitleActive').textContent =
+      cat === 'cbd' ? 'CBD Pain Relief Ads' : 'LiboPrime Ads (DE)';
+    document.querySelectorAll('.card').forEach(function(c) {
+      c.style.display = (c.dataset.category === cat) ? '' : 'none';
+    });
+    window.scrollTo(0, 0);
+  }
+
+  function downloadAdText(btn) {
+    var card = btn.closest('.card');
+    var raw = card.dataset.adText || '';
+    var text = raw.replace(/\\n/g, '\n');
+    var filename = (card.dataset.filename || 'ad') + '.txt';
+    var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  // Initial state: show homepage, hide all cards
+  showHome();
+</script>
 </body>
 </html>
