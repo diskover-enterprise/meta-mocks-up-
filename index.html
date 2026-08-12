@@ -312,13 +312,18 @@
   }
   .bulk-download-btn {
     background: var(--blue-btn);
-    color: white;
+    color: var(--text-dark);
     border: none;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     padding: 8px 14px;
     border-radius: 6px;
     cursor: pointer;
+  }
+  .bulk-download-btn:hover,
+  .bulk-download-btn:focus,
+  .bulk-download-btn:active {
+    color: var(--text-dark);
   }
   .bulk-download-btn:disabled {
     background: var(--btn-bg);
