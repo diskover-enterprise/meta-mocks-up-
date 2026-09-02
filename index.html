@@ -396,14 +396,11 @@
 <div class="home-title" id="brandTitle"></div>
 <div class="home-subtitle" id="brandSubtitle"></div>
 <div class="category-tiles" id="brandTiles"></div>
-<div class="no-results" id="brandNoResults" style="display:none;">No brands in this category yet.</div>
+<div class="no-results" id="brandNoResults" style="display:none;">No pages in this category yet.</div>
 </div>
 <div class="category-header" id="categoryHeader">
-<button class="back-btn" onclick="backToBrands()">← Back to brands</button>
+<button class="back-btn" onclick="backToBrands()">← Back to pages</button>
 <div class="category-title-active" id="categoryTitleActive"></div>
-<select class="select-filter" id="pageFilter" onchange="setPageFilter(this.value)">
-<option value="all">All pages</option>
-</select>
 <select class="select-filter" id="geoFilter" onchange="setGeoFilter(this.value)">
 <option value="all">All geos</option>
 </select>
@@ -1809,7 +1806,6 @@ Here's what's part of his routine after every session:
   var currentBrand = null;
   var currentMediaFilter = 'all';
   var currentGeoFilter = 'all';
-  var currentPageFilter = 'all';
   var currentSort = 'none';
 
   function showHome(skipUrlUpdate) {
@@ -1927,38 +1923,38 @@ Here's what's part of his routine after every session:
     var tilesEl = document.getElementById('brandTiles');
     tilesEl.innerHTML = '';
     var cardsInCat = document.querySelectorAll('.card[data-section="' + section + '"][data-category="' + cat + '"]');
-    var brands = {};
+    var pages = {};
     cardsInCat.forEach(function(c) {
-      var brand = c.dataset.brand || 'Unknown';
-      if (!brands[brand]) brands[brand] = { total: 0, images: 0, videos: 0, thumb: null, geos: new Set() };
-      brands[brand].total++;
+      var page = c.dataset.page || 'Unknown';
+      if (!pages[page]) pages[page] = { total: 0, images: 0, videos: 0, thumb: null, geos: new Set() };
+      pages[page].total++;
       if (c.dataset.mediaType === 'video') {
-        brands[brand].videos++;
+        pages[page].videos++;
       } else {
-        brands[brand].images++;
+        pages[page].images++;
       }
-      if (c.dataset.geo) brands[brand].geos.add(c.dataset.geo);
-      if (!brands[brand].thumb) {
+      if (c.dataset.geo) pages[page].geos.add(c.dataset.geo);
+      if (!pages[page].thumb) {
         var img = c.querySelector('.creative img');
         var video = c.querySelector('.creative video');
         if (img) {
-          brands[brand].thumb = img.getAttribute('data-src');
+          pages[page].thumb = img.getAttribute('data-src');
         } else if (video && video.getAttribute('data-poster')) {
-          brands[brand].thumb = video.getAttribute('data-poster');
+          pages[page].thumb = video.getAttribute('data-poster');
         }
       }
     });
 
-    Object.keys(brands).sort().forEach(function(brand) {
-      var info = brands[brand];
+    Object.keys(pages).sort().forEach(function(page) {
+      var info = pages[page];
       var tile = document.createElement('div');
       tile.className = 'category-tile';
-      tile.onclick = function() { showBrand(brand); };
+      tile.onclick = function() { showBrand(page); };
 
       if (info.thumb) {
         var img = document.createElement('img');
         img.src = info.thumb;
-        img.alt = brand;
+        img.alt = page;
         tile.appendChild(img);
       } else {
         var placeholder = document.createElement('div');
@@ -1971,7 +1967,7 @@ Here's what's part of his routine after every session:
       labelDiv.className = 'category-tile-label';
       var nameDiv = document.createElement('div');
       nameDiv.className = 'cat-name';
-      nameDiv.textContent = brand;
+      nameDiv.textContent = page;
       var countDiv = document.createElement('div');
       countDiv.className = 'cat-count';
       var parts = [];
@@ -2000,11 +1996,12 @@ Here's what's part of his routine after every session:
 
     if (section === 'spied') {
       titleEl.textContent = 'Spied Ads';
-      subEl.textContent = 'Competitor ad research — select a category, then a brand';
+      subEl.textContent = 'Competitor ad research — select a category, then a page';
     } else {
       titleEl.textContent = 'Fresh Creatives';
-      subEl.textContent = 'Ads you\'ve created — select a category, then a brand';
+      subEl.textContent = 'Ads you\'ve created — select a category, then a page';
     }
+
 
     buildCategoryTiles(section);
     var hasAnyCards = document.querySelectorAll('.card[data-section="' + section + '"]').length > 0;
@@ -2029,7 +2026,7 @@ Here's what's part of his routine after every session:
 
     document.getElementById('brandTitle').textContent = categoryLabel(cat);
     document.getElementById('brandSubtitle').textContent =
-      'Select a brand to view its ads' + (currentSection === 'spied' ? ' — Spied Ads' : ' — Fresh Creatives');
+      'Select a page to view its ads' + (currentSection === 'spied' ? ' — Spied Ads' : ' — Fresh Creatives');
 
     buildBrandTiles(currentSection, cat);
     var hasAnyCards = document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + cat + '"]').length > 0;
@@ -2049,7 +2046,7 @@ Here's what's part of his routine after every session:
     var select = document.getElementById('geoFilter');
     select.innerHTML = '<option value="all">All geos</option>';
     var geos = new Set();
-    document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + currentCategory + '"][data-brand="' + currentBrand + '"]').forEach(function(c) {
+    document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + currentCategory + '"][data-page="' + currentBrand + '"]').forEach(function(c) {
       if (c.dataset.geo) geos.add(c.dataset.geo);
     });
     if (geos.size === 0) {
@@ -2065,29 +2062,9 @@ Here's what's part of his routine after every session:
     }
   }
 
-  function populatePageFilter() {
-    var select = document.getElementById('pageFilter');
-    select.innerHTML = '<option value="all">All pages</option>';
-    var pages = new Set();
-    document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + currentCategory + '"][data-brand="' + currentBrand + '"]').forEach(function(c) {
-      if (c.dataset.page) pages.add(c.dataset.page);
-    });
-    if (pages.size <= 1) {
-      select.style.display = 'none';
-    } else {
-      select.style.display = '';
-      Array.from(pages).sort().forEach(function(page) {
-        var opt = document.createElement('option');
-        opt.value = page;
-        opt.textContent = page;
-        select.appendChild(opt);
-      });
-    }
-  }
-
   function hydrateBrand(section, cat, brand) {
     var cards = document.querySelectorAll(
-      '.card[data-section="' + section + '"][data-category="' + cat + '"][data-brand="' + brand + '"]'
+      '.card[data-section="' + section + '"][data-category="' + cat + '"][data-page="' + brand + '"]'
     );
     cards.forEach(function(card) {
       if (card.dataset.hydrated === 'true') return;
@@ -2123,12 +2100,9 @@ Here's what's part of his routine after every session:
       brand + ' — ' + categoryLabel(currentCategory) + (currentSection === 'spied' ? ' (Spied)' : ' (Fresh)');
     currentMediaFilter = 'all';
     currentGeoFilter = 'all';
-    currentPageFilter = 'all';
     document.getElementById('selectAllCheckbox').checked = false;
     populateGeoFilter();
     document.getElementById('geoFilter').value = 'all';
-    populatePageFilter();
-    document.getElementById('pageFilter').value = 'all';
     updateFilterButtons();
 
     hydrateBrand(currentSection, currentCategory, brand);
@@ -2182,11 +2156,6 @@ Here's what's part of his routine after every session:
     applyFilters();
   }
 
-  function setPageFilter(page) {
-    currentPageFilter = page;
-    applyFilters();
-  }
-
   function updateFilterButtons() {
     document.getElementById('filterAll').classList.toggle('active', currentMediaFilter === 'all');
     document.getElementById('filterImages').classList.toggle('active', currentMediaFilter === 'image');
@@ -2198,11 +2167,10 @@ Here's what's part of his routine after every session:
     document.querySelectorAll('.card').forEach(function(c) {
       var matchesSection = c.dataset.section === currentSection;
       var matchesCategory = c.dataset.category === currentCategory;
-      var matchesBrand = c.dataset.brand === currentBrand;
+      var matchesBrand = c.dataset.page === currentBrand;
       var matchesMedia = (currentMediaFilter === 'all') || (c.dataset.mediaType === currentMediaFilter);
       var matchesGeo = (currentGeoFilter === 'all') || (c.dataset.geo === currentGeoFilter);
-      var matchesPage = (currentPageFilter === 'all') || (c.dataset.page === currentPageFilter);
-      var show = matchesSection && matchesCategory && matchesBrand && matchesMedia && matchesGeo && matchesPage;
+      var show = matchesSection && matchesCategory && matchesBrand && matchesMedia && matchesGeo;
       c.style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
@@ -2340,11 +2308,11 @@ Here's what's part of his routine after every session:
   function buildBrandSlugMap() {
     var map = {};
     document.querySelectorAll('.card').forEach(function(c) {
-      var brand = c.dataset.brand;
-      if (!brand) return;
-      var slug = slugify(brand);
+      var page = c.dataset.page;
+      if (!page) return;
+      var slug = slugify(page);
       if (!map[slug]) {
-        map[slug] = { section: c.dataset.section, category: c.dataset.category, brand: brand };
+        map[slug] = { section: c.dataset.section, category: c.dataset.category, brand: page };
       }
     });
     return map;
