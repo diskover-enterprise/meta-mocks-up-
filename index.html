@@ -15,6 +15,8 @@
     --domain-gray: #8a8d91;
     --btn-bg: #e4e6eb;
     --btn-text: #050505;
+    --tag-bg: #e4e6eb;
+    --blue-btn: #1877f2;
   }
   * { box-sizing: border-box; }
   body {
@@ -253,7 +255,7 @@
   .dl-btn {
     flex: 1;
     text-align: center;
-    background: var(--blue-btn);
+    background: transparent;
     color: var(--text-dark);
     font-size: 13px;
     font-weight: 700;
@@ -271,7 +273,7 @@
   }
   .dl-btn:disabled {
     color: var(--text-dark);
-    background: var(--blue-btn);
+    background: transparent;
     opacity: 0.7;
     cursor: not-allowed;
   }
@@ -320,7 +322,7 @@
     cursor: pointer;
   }
   .bulk-download-btn {
-    background: var(--blue-btn);
+    background: transparent;
     color: var(--text-dark);
     border: none;
     font-size: 13px;
@@ -2148,13 +2150,19 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
     return currentSourceFilter === 'all' ? '' : '?source=' + currentSourceFilter;
   }
 
+  // Cards are only shown on a page view; every other screen hides the whole grid.
+  function hideCardGrid() {
+    document.getElementById('noResults').style.display = 'none';
+    document.querySelectorAll('.card').forEach(function(c) { c.style.display = 'none'; });
+  }
+
   function showHome(skipUrlUpdate) {
     document.getElementById('homeScreen').style.display = 'flex';
     document.getElementById('sectionScreen').style.display = 'none';
     document.getElementById('brandScreen').style.display = 'none';
     document.getElementById('categoryHeader').style.display = 'none';
-    document.getElementById('noResults').style.display = 'none';
-    document.querySelectorAll('.card').forEach(function(c) { c.style.display = 'none'; });
+    hideCardGrid();
+    updateHomeCounts();
     currentSection = null;
     currentCategory = null;
     currentBrand = null;
@@ -2333,6 +2341,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
     document.getElementById('homeScreen').style.display = 'none';
     document.getElementById('brandScreen').style.display = 'none';
     document.getElementById('categoryHeader').style.display = 'none';
+    hideCardGrid();
     document.getElementById('sectionScreen').style.display = 'flex';
 
     var titleEl = document.getElementById('sectionTitle');
@@ -2370,6 +2379,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
     document.getElementById('homeScreen').style.display = 'none';
     document.getElementById('sectionScreen').style.display = 'none';
     document.getElementById('categoryHeader').style.display = 'none';
+    hideCardGrid();
     document.getElementById('brandScreen').style.display = 'flex';
 
     document.getElementById('brandTitle').textContent = categoryLabel(cat);
