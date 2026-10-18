@@ -361,9 +361,42 @@
     padding: 8px 10px;
     cursor: pointer;
   }
+  .source-filter-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0;
+    background: var(--bg);
+  }
+  .source-filter-btn {
+    background: var(--btn-bg);
+    color: var(--text-dark);
+  }
+  .source-filter-btn.active {
+    background: #1877f2;
+    color: #ffffff;
+  }
+  .source-filter-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-gray);
+  }
 </style>
 </head>
 <body>
+<div class="source-filter-bar" id="sourceFilterBar">
+<span class="source-filter-label">Source</span>
+<button class="media-filter-btn source-filter-btn active" id="sourceAll" onclick="setSourceFilter('all')">ALL</button>
+<button class="media-filter-btn source-filter-btn" id="sourceMeta" onclick="setSourceFilter('meta')">META</button>
+<button class="media-filter-btn source-filter-btn" id="sourceGoogle" onclick="setSourceFilter('google')">GOOGLE</button>
+</div>
 <div class="home-wrap" id="homeScreen">
 <div class="home-title">Ad Creative Library</div>
 <div class="home-subtitle">Choose a section to get started</div>
@@ -2048,6 +2081,72 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
   var currentMediaFilter = 'all';
   var currentGeoFilter = 'all';
   var currentSort = 'none';
+  var SOURCE_FILTERS = ['all', 'meta', 'google'];
+  var SOURCE_LABELS = { all: 'ALL', meta: 'META', google: 'GOOGLE' };
+  var currentSourceFilter = sourceFromUrl();
+
+  // Cards without data-source predate multi-platform support; they are all Meta Ad Library cards.
+  function cardSource(card) {
+    return String(card.dataset.source || 'meta').toLowerCase();
+  }
+
+  function matchesSourceFilter(card) {
+    return currentSourceFilter === 'all' || cardSource(card) === currentSourceFilter;
+  }
+
+  // querySelectorAll restricted to cards that match the active source filter.
+  function sourceCards(selector) {
+    return Array.prototype.filter.call(document.querySelectorAll(selector), matchesSourceFilter);
+  }
+
+  function sourceFromUrl() {
+    var value = String(new URLSearchParams(window.location.search).get('source') || 'all').toLowerCase();
+    return SOURCE_FILTERS.indexOf(value) === -1 ? 'all' : value;
+  }
+
+  function updateSourceButtons() {
+    var counts = { all: 0, meta: 0, google: 0 };
+    document.querySelectorAll('.card').forEach(function(c) {
+      counts.all++;
+      var src = cardSource(c);
+      if (counts.hasOwnProperty(src)) counts[src]++;
+    });
+    [['all', 'sourceAll'], ['meta', 'sourceMeta'], ['google', 'sourceGoogle']].forEach(function(pair) {
+      var btn = document.getElementById(pair[1]);
+      if (!btn) return;
+      btn.textContent = SOURCE_LABELS[pair[0]] + ' (' + counts[pair[0]] + ')';
+      btn.classList.toggle('active', currentSourceFilter === pair[0]);
+    });
+  }
+
+  function setSourceFilter(source) {
+    if (SOURCE_FILTERS.indexOf(source) === -1) source = 'all';
+    currentSourceFilter = source;
+    updateSourceButtons();
+    var path = window.location.pathname;
+    history.replaceState(history.state, '', path + sourceQuery());
+
+    // Re-render whichever screen is showing; the category/page context is kept.
+    if (document.getElementById('categoryHeader').style.display === 'flex') {
+      var keepGeo = currentGeoFilter;
+      populateGeoFilter();
+      var geoSelect = document.getElementById('geoFilter');
+      var hasGeo = Array.prototype.some.call(geoSelect.options, function(o) { return o.value === keepGeo; });
+      currentGeoFilter = hasGeo ? keepGeo : 'all';
+      geoSelect.value = currentGeoFilter;
+      applyFilters();
+    } else if (document.getElementById('brandScreen').style.display === 'flex') {
+      showCategory(currentCategory, true);
+    } else if (document.getElementById('sectionScreen').style.display === 'flex') {
+      showSection(currentSection, true);
+    } else {
+      updateHomeCounts();
+    }
+  }
+
+  function sourceQuery() {
+    return currentSourceFilter === 'all' ? '' : '?source=' + currentSourceFilter;
+  }
 
   function showHome(skipUrlUpdate) {
     document.getElementById('homeScreen').style.display = 'flex';
@@ -2086,7 +2185,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
 
   function updateHomeCounts() {
     ['spied', 'fresh'].forEach(function(section) {
-      var cards = document.querySelectorAll('.card[data-section="' + section + '"]');
+      var cards = sourceCards('.card[data-section="' + section + '"]');
       var cats = new Set();
       cards.forEach(function(c) { cats.add(c.dataset.category); });
       var el = document.getElementById(section + 'Count');
@@ -2101,7 +2200,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
   function buildCategoryTiles(section) {
     var tilesEl = document.getElementById('sectionCategoryTiles');
     tilesEl.innerHTML = '';
-    var cardsInSection = document.querySelectorAll('.card[data-section="' + section + '"]');
+    var cardsInSection = sourceCards('.card[data-section="' + section + '"]');
     var categories = {};
     cardsInSection.forEach(function(c) {
       var cat = c.dataset.category;
@@ -2168,7 +2267,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
   function buildBrandTiles(section, cat) {
     var tilesEl = document.getElementById('brandTiles');
     tilesEl.innerHTML = '';
-    var cardsInCat = document.querySelectorAll('.card[data-section="' + section + '"][data-category="' + cat + '"]');
+    var cardsInCat = sourceCards('.card[data-section="' + section + '"][data-category="' + cat + '"]');
     var pages = {};
     cardsInCat.forEach(function(c) {
       var page = c.dataset.page || 'Unknown';
@@ -2250,9 +2349,12 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
 
 
     buildCategoryTiles(section);
-    var hasAnyCards = document.querySelectorAll('.card[data-section="' + section + '"]').length > 0;
+    var hasAnyCards = sourceCards('.card[data-section="' + section + '"]').length > 0;
     document.getElementById('sectionCategoryTiles').style.display = hasAnyCards ? 'flex' : 'none';
     noResultsEl.style.display = hasAnyCards ? 'none' : 'block';
+    noResultsEl.textContent = currentSourceFilter === 'all'
+      ? 'No ads in this section yet. Upload competitor ad screenshots to populate it.'
+      : 'No ' + SOURCE_LABELS[currentSourceFilter] + ' ads in this section.';
 
     if (!skipUrlUpdate) updateUrl('/' + section);
     window.scrollTo(0, 0);
@@ -2275,9 +2377,13 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
       'Select a page to view its ads' + (currentSection === 'spied' ? ' — Spied Ads' : ' — Fresh Creatives');
 
     buildBrandTiles(currentSection, cat);
-    var hasAnyCards = document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + cat + '"]').length > 0;
+    var hasAnyCards = sourceCards('.card[data-section="' + currentSection + '"][data-category="' + cat + '"]').length > 0;
     document.getElementById('brandTiles').style.display = hasAnyCards ? 'flex' : 'none';
-    document.getElementById('brandNoResults').style.display = hasAnyCards ? 'none' : 'block';
+    var brandNoResultsEl = document.getElementById('brandNoResults');
+    brandNoResultsEl.style.display = hasAnyCards ? 'none' : 'block';
+    brandNoResultsEl.textContent = currentSourceFilter === 'all'
+      ? 'No pages in this category yet.'
+      : 'No ' + SOURCE_LABELS[currentSourceFilter] + ' ads in this category.';
 
     if (!skipUrlUpdate) updateUrl('/' + currentSection + '/' + slugify(categoryLabel(cat)));
     window.scrollTo(0, 0);
@@ -2292,7 +2398,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
     var select = document.getElementById('geoFilter');
     select.innerHTML = '<option value="all">All geos</option>';
     var geos = new Set();
-    document.querySelectorAll('.card[data-section="' + currentSection + '"][data-category="' + currentCategory + '"][data-page="' + currentBrand + '"]').forEach(function(c) {
+    sourceCards('.card[data-section="' + currentSection + '"][data-category="' + currentCategory + '"][data-page="' + currentBrand + '"]').forEach(function(c) {
       if (c.dataset.geo) geos.add(c.dataset.geo);
     });
     if (geos.size === 0) {
@@ -2416,7 +2522,7 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
       var matchesBrand = c.dataset.page === currentBrand;
       var matchesMedia = (currentMediaFilter === 'all') || (c.dataset.mediaType === currentMediaFilter);
       var matchesGeo = (currentGeoFilter === 'all') || (c.dataset.geo === currentGeoFilter);
-      var show = matchesSection && matchesCategory && matchesBrand && matchesMedia && matchesGeo;
+      var show = matchesSection && matchesCategory && matchesBrand && matchesMedia && matchesGeo && matchesSourceFilter(c);
       c.style.display = show ? '' : 'none';
       if (show) visibleCount++;
     });
@@ -2546,8 +2652,9 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
   }
 
   function updateUrl(path) {
-    if (window.location.pathname !== path) {
-      history.pushState({ path: path }, '', path);
+    var target = path + sourceQuery();
+    if (window.location.pathname + window.location.search !== target) {
+      history.pushState({ path: path }, '', target);
     }
   }
 
@@ -2620,10 +2727,13 @@ $399 once. No renewal. 14-day money-back. Terms apply.</div><div class="creative
   }
 
   window.addEventListener('popstate', function() {
+    currentSourceFilter = sourceFromUrl();
+    updateSourceButtons();
     routeFromLocation();
   });
 
   // Initial state: route based on current URL (supports direct links like /quad)
+  updateSourceButtons();
   updateHomeCounts();
   routeFromLocation();
 </script>
